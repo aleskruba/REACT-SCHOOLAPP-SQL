@@ -10,7 +10,7 @@ import multer from "multer";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from 'cors';
-
+import {PORT,PORT1} from './config.js'
 
 
 export const app = express()
@@ -69,9 +69,9 @@ app.use("/api/teacher", teacherRoutes)
 
 
 
-app.listen(8800,()=>{
+app.listen(PORT,()=>{
     console.log('Connected on port 8800')
 })
-httpServer.listen(8801,()=>{
+httpServer.listen(PORT1,()=>{
   console.log('Connected on port 8801')
 })
