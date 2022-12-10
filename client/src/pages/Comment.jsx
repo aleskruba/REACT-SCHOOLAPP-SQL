@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import './comment.scss'
 import { useNavigate} from 'react-router-dom'
 
+
 export default function Comment() {
   const [value, setValue] = useState('');
   const [title,setTitle] = useState("")
@@ -29,12 +30,20 @@ export default function Comment() {
 
   }
 
+
+
   return (
     <div className='write-comment'>
       <div className="content">
-        <input type="text" value={title}  placeholder='title' onChange={e=>setTitle(e.target.value)}/>
+        <input type="text" value={title} maxLength="50"  placeholder='title' onChange={e=>setTitle(e.target.value)}/>
         <div className="editContainer"> 
-           <ReactQuill className='editor'  theme="snow" value={value} onChange={setValue} />
+           <ReactQuill   
+              theme="snow" 
+              value={value} 
+              onChange={setValue} 
+              maxLength="10" 
+           
+              />
         </div>
         <div className="buttons">
           <button className='button-send' onClick={handleSubmit} >Send</button>

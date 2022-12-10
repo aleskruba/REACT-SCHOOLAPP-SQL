@@ -9,7 +9,11 @@ export const AuthContextProvider = ({children}) =>{
 
     const [updatedProfile,setUpdatedProfile] = useState()
 
-const login = async(inputs)=> {
+
+
+
+
+ const login = async(inputs)=> {
      const res = await axios.post("/auth/login",inputs)
     setCurrentUser(res.data)
   
@@ -25,6 +29,7 @@ const login = async(inputs)=> {
 
 useEffect(()=>{
     localStorage.setItem('user',JSON.stringify(currentUser))
+ 
 },[currentUser])
 
 return (

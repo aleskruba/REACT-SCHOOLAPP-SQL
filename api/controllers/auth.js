@@ -52,7 +52,7 @@ export const register = (req, res) => {
   
       if (!isPasswordCorrect)
         return res.status(400).json("Wrong username or password!");
-        const token = jwt.sign({ id: data[0].id }, "jwtkey");
+        const token = jwt.sign({ id: data[0].id, admin: data[0].admin}, "jwtkey");
         const { password, ...other } = data[0];
         
         res.cookie("access_token", token, {
@@ -104,6 +104,20 @@ export const register = (req, res) => {
       
     };
 
+    export const getUsers = (req,res) =>{
+
+  
+      const q =   "SELECT * FROM users WHERE id = ? ";
+    
+      db.query(q,[req.params.id],(err,data)=>{
+          if(err) return res.send(err)
+          return res.status(200).json(data)
+      })
+  
+  
+  
+  }
+
 
     
 
@@ -118,6 +132,22 @@ export const logout = (req,res) =>{
  }).status(200).json("User has been logged out")
 
 }
+
+
+
+export const deleteUser = (req, res) => {
+
+
+    const q = "DELETE FROM users WHERE `id` = ? ";
+    const userID = req.params.id;
+    
+    db.query(q, userID, (err, data) => {
+      if (err) return res.status(403).json("You can not delete this user!");
+
+      return res.json("User has been deleted!");
+    });
+
+};
 
 
 

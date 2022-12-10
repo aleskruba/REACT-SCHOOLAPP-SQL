@@ -20,6 +20,8 @@ import Grades from "./pages/Grades";
 import Nopage from "./pages/Nopage";
 import UpdateUser from "./pages/UpdateUser";
 import axios from 'axios';
+import Teacherpage from "./pages/Teacherpage";
+import Students from "./pages/Students";
 
 function App() {
  
@@ -48,9 +50,15 @@ const Layout = () => {
         {path:"/Comment",
         element:<RequireAuth><Comment/></RequireAuth> 
         },
-        {path:"/Grades",
+        {path:"/Grades/:id",
         element:<RequireAuth><Grades/></RequireAuth> 
-        },            
+        },
+        {path:"Teacherpage",
+        element:<RequireAuth><Teacherpage/></RequireAuth> 
+        },
+        {path:"Students/:id",
+        element:<RequireAuth><Students/></RequireAuth> 
+        },               
         {path:"*",
         element:<RequireAuth><Nopage/></RequireAuth> 
         }

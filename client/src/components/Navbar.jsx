@@ -43,35 +43,57 @@ export default function Navbar(props) {
 
         <div className="links">
                <div className="greet">
-         {currentUser && <h4 className='currentUser'>Welcome! {updatedProfile?.username ? updatedProfile?.username : currentUser.username}  </h4> }
+         {currentUser && <h4 className='currentUser'>Welcome ! <span className='currentUserName'>{ updatedProfile?.username ? updatedProfile?.username : currentUser.username}</span>  </h4> }
          </div>
-         <Link className='link' to="/grades">
-         <div className="example">
-
-    {!updatedProfile?.img || updatedProfile?.img == 'nothing' ?    <img src={`../upload/avatar.jpg`}  />
+         
+         
+         {updatedProfile?.admin != 0 ?
+                <span className='navbarTitle'>
+            <Link className='link' to="/Teacherpage">
+            <div className="example">
+              {!updatedProfile?.img || updatedProfile?.img == 'nothing' ?    <img src={`../upload/avatar.jpg`}  />
                :
-         <img src={`../upload/${updatedProfile?.img}`} /> 
-      } 
+              <img src={`../upload/${updatedProfile?.img}`} /> 
+              } 
     
-       {/*./upload/${currentUser?.img} */} 
+  
       
-          <div className="fadedbox">
-    <div className="title text"><b>Your grades</b></div>
-  </div></div></Link>
+            <div className="fadedbox">
+            <div className="title text"><b>TEACHER ZONE</b></div>
+           </div>
+        </div></Link></span>
+          : 
+         
+         <Link className='link' to={`/grades/${currentUser?.id}`}>
+         <div className="example">
+              {!updatedProfile?.img || updatedProfile?.img == 'nothing' ?    <img src={`../upload/avatar.jpg`}  />
+               :
+              <img src={`../upload/${updatedProfile?.img}`} /> 
+              } 
+    
+  
+      
+            <div className="fadedbox">
+            <div className="title text"><b>Your grades</b></div>
+           </div>
+        </div>
+        </Link>} 
           
-          <span className='comment'>
+
+         
+          <span className='navbarTitle'>
             <Link className='link' to="/comment">
              Comment</Link></span>
              
              {currentUser && 
              <Link className='link'  to={`/updateuser/${currentUser.id}`} state={updatedProfile} >
              <div className='update'>
-               <span className='comment' >Profile</span> 
+               <span className='navbarTitle' >Profile</span> 
               </div></Link>}
 
          
              <div className="logout">
-               <span className='comment' onClick={logout} >Logout</span> 
+               <span className='navbarTitle' onClick={logout} >Logout</span> 
               </div>
             </div>
       </div>
