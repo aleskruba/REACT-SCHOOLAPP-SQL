@@ -6,7 +6,9 @@ import 'react-quill/dist/quill.snow.css';
 import { Link } from 'react-router-dom'
 import './comment.scss'
 import { useNavigate} from 'react-router-dom'
+import { API_URL } from "../index.js";
 
+axios.defaults.withCredentials = true;
 
 export default function Comment() {
   const [value, setValue] = useState('');
@@ -18,7 +20,7 @@ export default function Comment() {
     e.preventDefault();
 
     try{
-        await axios.post('/comments/',{
+        await axios.post(`${API_URL}/comments/`,{
           title:title,
           comment:value,
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
